@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: RedDragon
+    uniqueID: 728908851
+    locked: 0
+  - name: GrayDragon
+    uniqueID: 304413635
+    locked: 0
