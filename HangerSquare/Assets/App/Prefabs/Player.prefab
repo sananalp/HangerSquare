@@ -296,7 +296,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 169452608200480089}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c3e141156645547b10aaa1824fb5df, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e6b04a4315aeeb4290d4a4674c48fa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isFixedDirection: 0

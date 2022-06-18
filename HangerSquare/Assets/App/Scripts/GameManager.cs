@@ -11,11 +11,13 @@ public class GameManager : MonoBehaviour
 
     [Header("Components")]
     [SerializeField] private Rigidbody2D playerRg2D;
-    [SerializeField] private GameObject player, gameOverCanvas, gamePlayCanvas, textStartTap;
+    [SerializeField] private GameObject player, gameOverCanvas, gamePlayCanvas, levelUpCanvas, textStartTap;
     [SerializeField] private Slider m_slider;
 
     [SerializeField] private TextMeshProUGUI inGameScore, finalScore, bestScore;
     private int scoreValue;
+    public float SliderValue { get { return m_slider.value; } }
+    public float SliderMaxValue { get { return m_slider.maxValue; } }
 
     void Start()
     {
@@ -34,10 +36,14 @@ public class GameManager : MonoBehaviour
 
     private void StartGame()
     {
-        if (Input.GetMouseButtonDown(0) || Input.anyKey)
+        if (GameState.StateType != GameState.Type.Play)
         {
-            playerRg2D.bodyType = RigidbodyType2D.Dynamic;
-            textStartTap.SetActive(false);
+            if (Input.GetMouseButtonDown(0) || Input.anyKey)
+            {
+                GameState.StateType = GameState.Type.Play;
+                playerRg2D.bodyType = RigidbodyType2D.Dynamic;
+                textStartTap.SetActive(false);
+            }
         }
     }
 
@@ -48,13 +54,18 @@ public class GameManager : MonoBehaviour
         gamePlayCanvas.SetActive(false);
         BestScore();
     }
-
+    public void LevelUp()
+    {
+        GameState.StateType = default;
+        gamePlayCanvas.SetActive(false);
+        levelUpCanvas.SetActive(true);
+    }
     public void Restart()
     {
+        GameState.StateType = default;
         SceneManager.LoadScene(0);
         gameOverCanvas.SetActive(false);
     }
-
     public void InGameScore()
     {
         scoreValue = (int)player.transform.position.x/10;
